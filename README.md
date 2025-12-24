@@ -1,116 +1,35 @@
 📌 Overview
 
-This project implements a single-user elevator controller for a 3-floor building using Verilog HDL.
-The elevator serves:
+This project implements a single-user elevator controller for a three-floor building using Verilog HDL. The elevator services Floor 0, which acts as the idle floor, along with Floor 1 and Floor 2. The system is designed to mimic realistic elevator behavior by accepting both inside (cabin) and outside (hall) button requests, moving to the requested destination floor, opening the doors for a fixed duration, and automatically returning to Floor 0 after the passenger is dropped off.
 
--Floor 0 (Idle Floor)
--Floor 1
--Floor 2
-
-The system follows realistic elevator behavior:
-
-Accepts inside (cabin) and outside (hall) button requests
-
-Moves to the requested floor
-
-Opens doors for a fixed duration
-
-Automatically returns to Floor 0 after dropping the passenger
-
-The design is based on a Finite State Machine (FSM) and uses counters to model:
-
-Travel time
-
-Door open time
-
+The overall control logic is based on a Finite State Machine (FSM). Counters are used to model the time taken to travel between floors as well as the duration for which the doors remain open.
 
 🏢 Floor & Button Configuration
-Outside (Hall) Buttons
-Floor	Buttons Available
-Floor 0	UP
-Floor 1	UP, DOWN
-Floor 2	DOWN
-Inside (Cabin) Buttons
 
-Floor 0
+The building consists of three floors with a predefined set of hall buttons. Floor 0 is equipped only with an UP button, as it is the lowest and idle floor. Floor 1 contains both UP and DOWN buttons, allowing calls in either direction, while Floor 2, being the topmost floor, is provided only with a DOWN button.
 
-Floor 1
-
-Floor 2
-
-Only one request is handled at a time, reflecting the single-user assumption.
-
+Inside the elevator cabin, floor selection buttons are available for Floor 0, Floor 1, and Floor 2. The system is designed to handle only one request at a time, which reflects the single-user assumption and simplifies control logic.
 
 ⚙️ Functional Behavior
 
-Elevator idles at Floor 0
-
-A request is made via:
-
-Inside cabin button OR
-
-Outside hall button
-
-Elevator moves up or down to the requested floor
-
-Doors open for a fixed duration
-
-After servicing the request, the elevator returns to Floor 0
-
-Elevator re-enters the IDLE state
-
+Under normal operation, the elevator remains idle at Floor 0. When a request is made, either from inside the cabin or from an outside hall button, the controller determines the direction of movement and drives the elevator upward or downward accordingly. Upon reaching the requested floor, the doors are opened for a fixed duration to allow passenger movement. Once the request has been serviced, the elevator automatically returns to Floor 0 and re-enters the idle state, ready to accept the next request.
 
 🧠 Design Architecture
 
-The elevator does not use physical sensors. Instead:
-
-Travel time between floors is modeled using counters
-
-Door open time is also counter-based
-
-These values are parameterized and can be adjusted easily:
+The elevator system does not rely on physical position sensors. Instead, movement between floors is modeled using counters that represent travel time, and door operation is similarly controlled using a counter-based timing mechanism. These timing parameters are configurable and can be easily adjusted to suit different clock frequencies or simulation requirements, as shown below:
 
 parameter CLK_FREQ_HZ     = 50_000_000;
 parameter TRAVEL_TIME_MS  = 2000;
 parameter DOOR_OPEN_MS    = 1500;
 
-
 🧪 Testbench
 
-A dedicated testbench is included to simulate:
-
-Selecting floors from inside the elevator
-
-Calling the elevator from Floor 1
-
-Automatic return to Floor 0
-
-Simulation outputs can be viewed using GTKWave via the generated .vcd file.
-
+A dedicated testbench accompanies the design to verify correct functionality. The testbench simulates scenarios such as selecting destination floors from inside the elevator, calling the elevator from Floor 1, and observing the automatic return to Floor 0 after servicing a request. Simulation results are captured in a .vcd file, which can be viewed using GTKWave for waveform analysis.
 
 🚧 Assumptions & Limitations
 
-Single user only (no request queue)
-
-No emergency handling
-
-No door obstruction logic
-
-No button debouncing (assumed ideal inputs)
-
-No floor sensors (time-based movement only)
-
+The design assumes the presence of only a single user at any given time, and therefore does not implement request queuing or prioritization. Emergency handling, door obstruction detection, and button debouncing are not included, with all inputs assumed to be ideal. Additionally, the system operates without physical floor sensors and relies solely on time-based movement modeling.
 
 🔮 Possible Extensions
 
-Multi-request queue
-
-Priority scheduling
-
-Emergency stop
-
-Door obstruction detection
-
-Floor sensors instead of timers
-
-Seven-segment floor display
+The current design can be extended to support multiple queued requests, priority-based scheduling, emergency stop functionality, and door obstruction detection. Further enhancements may include the use of floor sensors instead of timing-based movement and the integration of a seven-segment display to indicate the current floor.
