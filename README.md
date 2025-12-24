@@ -25,6 +25,7 @@ Travel time
 
 Door open time
 
+
 🏢 Floor & Button Configuration
 Outside (Hall) Buttons
 Floor	Buttons Available
@@ -40,6 +41,7 @@ Floor 1
 Floor 2
 
 Only one request is handled at a time, reflecting the single-user assumption.
+
 
 ⚙️ Functional Behavior
 
@@ -59,6 +61,7 @@ After servicing the request, the elevator returns to Floor 0
 
 Elevator re-enters the IDLE state
 
+
 🧠 Design Architecture
 
 The elevator does not use physical sensors. Instead:
@@ -73,6 +76,7 @@ parameter CLK_FREQ_HZ     = 50_000_000;
 parameter TRAVEL_TIME_MS  = 2000;
 parameter DOOR_OPEN_MS    = 1500;
 
+
 🧪 Testbench
 
 A dedicated testbench is included to simulate:
@@ -85,6 +89,7 @@ Automatic return to Floor 0
 
 Simulation outputs can be viewed using GTKWave via the generated .vcd file.
 
+
 🚧 Assumptions & Limitations
 
 Single user only (no request queue)
@@ -96,6 +101,7 @@ No door obstruction logic
 No button debouncing (assumed ideal inputs)
 
 No floor sensors (time-based movement only)
+
 
 🔮 Possible Extensions
 
