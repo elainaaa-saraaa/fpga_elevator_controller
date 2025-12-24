@@ -33,3 +33,10 @@ The design assumes the presence of only a single user at any given time, and the
 🔮 Possible Extensions
 
 The current design can be extended to support multiple queued requests, priority-based scheduling, emergency stop functionality, and door obstruction detection. Further enhancements may include the use of floor sensors instead of timing-based movement and the integration of a seven-segment display to indicate the current floor.
+
+
+>> Project by:
+1. ELaina Sara Sabu
+2. Meria Rachel Binu
+3. Adithya Radhakrishnan
+4. Sagarika Prasandan
