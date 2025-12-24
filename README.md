@@ -3,11 +3,9 @@
 This project implements a single-user elevator controller for a 3-floor building using Verilog HDL.
 The elevator serves:
 
-Floor 0 (Idle Floor)
-
-Floor 1
-
-Floor 2
+-Floor 0 (Idle Floor)
+-Floor 1
+-Floor 2
 
 The system follows realistic elevator behavior:
 
