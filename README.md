@@ -36,7 +36,7 @@ The current design can be extended to support multiple queued requests, priority
 
 
 >> Project by:
-1. ELaina Sara Sabu
+1. Elaina Sara Sabu
 2. Meria Rachel Binu
 3. Adithya Radhakrishnan
 4. Sagarika Prasandan
